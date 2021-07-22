@@ -19,7 +19,7 @@ public class ReportEmail {
 
 	Session session;    
     private final String from = "ganapathy8974@gmail.com";
-    private final String password = "N@ncy-8974";
+    private final String password = "********";
     //Authentication Method this is create a session once successfully authenticated 
     public void MailAuthentication() {
     	
