@@ -48,13 +48,13 @@ public class StudentData {
 		reg_0002.put("science", "35");
 		
 		//Create a ArrayList for Store the Student HashMap Object.
-		ArrayList<HashMap> st = new ArrayList<HashMap>();
-		st.add(reg_0002);
-		st.add(reg_0001);	
+		ArrayList<HashMap> studentDetails = new ArrayList<HashMap>();
+		studentDetails.add(reg_0002);
+		studentDetails.add(reg_0001);	
 		
 		//Call setData method in this class
 		try {
-			for(HashMap<String, String> mapData : st) {
+			for(HashMap<String, String> mapData : studentDetails) {
 				data.setData(mapData);
 			}
 		}catch(Exception ex) {
@@ -80,7 +80,7 @@ public class StudentData {
 		DataSource excelReport = report.getReport(name, roleNumber, cls, english, tamil, maths, social, science);
 		System.out.println(name+"'s mark report Generated.");
 		
-		//Call the get email message in the report eamil class pass the all needed data as argument
+		//Call the get email message in the report email class pass the all needed data as argument
 		reportEmail.MailAuthentication();
 		reportEmail.EmailMessage(email, parentName[0], excelReport);
 		

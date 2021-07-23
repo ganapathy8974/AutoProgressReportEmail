@@ -58,7 +58,7 @@ public class Report {
 		row5.createCell(5).setCellFormula("SUM(A6:E6)");
 		row5.createCell(6).setCellFormula("(F6/500)*100");		
 		
-		//set column size auto here
+		//set column size auto here using for loop to implement all of columns 
 		for(int i=0;i<row4.getPhysicalNumberOfCells();i++) {
 			sheet.autoSizeColumn(i);
 		}	

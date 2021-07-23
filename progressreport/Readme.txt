@@ -1,112 +1,90 @@
-																	PDF E - Certificate Project
-																	---------------------------
-																	
+Project Name : Excel Auto Progress Report Via Email
+
 Application:
 ------------
-This project helps to generate PDF certificate dynamically. you simply Enter the details it will generate beautiful certificate with QRcode.
+This project helps you to automatically send student mark report in Excel format via email.
 
 Used Dependencies:
 ------------------
 <dependency>
-    <groupId>org.apache.pdfbox</groupId>
-    <artifactId>pdfbox</artifactId>
-    <version>3.0.0-RC1</version>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi</artifactId>
+	<version>5.0.0</version>
 </dependency>
 
- <dependency>
-    <groupId>org.apache.pdfbox</groupId>
-    <artifactId>xmpbox</artifactId>
-    <version>3.0.0-RC1</version>
-</dependency>
-
-<dependency>  
-	<groupId>org.apache.pdfbox</groupId>  
-	<artifactId>preflight</artifactId>  
-	<version>3.0.0-RC1</version>  
-</dependency>
-
-<dependency>  
-	<groupId>org.apache.pdfbox</groupId>  
-	<artifactId>pdfbox-tools</artifactId>  
-	<version>3.0.0-RC1</version>  
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi-ooxml</artifactId>
+	<version>5.0.0</version>
 </dependency> 
-
+ 	
 <dependency>
-    <groupId>com.google.zxing</groupId>
-    <artifactId>core</artifactId>
-    <version>3.3.0</version>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.5.1</version>
 </dependency>
 
 <dependency>
-	<groupId>com.google.zxing</groupId>
-	<artifactId>javase</artifactId>
-	<version>3.3.0</version>
+    <groupId>javax.activation</groupId>
+    <artifactId>activation</artifactId>
+    <version>1.1.1</version>
 </dependency>
 
-Used Class:
------------
-Totally this project contaion 3 classes 
-1)Certificate
-2)QRCode
-3)Text
+Used Classes:
+-------------
+	1) StudentData:
+	---------------
+		This class has main method and setData method and carry the all student data in the main method.
+		
+		i)setData - Method
+		------------------
+			*This is retrieve the student inform from hash map and store it into strings.
+			
+			*Now, this method pass the strings to Report class getReport method that is return the excel data source.
+			
+			*Finally pass the data source to the ReportEmail class.
+	2) Report:
+	----------
+		This is class only for create a excel sheet.
 
-QRcode:
-------
-This class have generateQR method.
+		i)getReport Method
+		------------------
+			*This method receiving the passed arguments and create a excel sheet and return the Excel Sheet Data Source. 
+	1) SendEmail
+	------------
+		This class have two methods one is emailMessage other one is mailAuthentication
+		
+		i) mailAuthentication - Method
+		------------------------------
+			* This method only for Authentication user name and password is correct it will create a session. 
+			
+			* Using this session to send the email.
+			
+		ii) emailMessage - Method
+		-------------------------
+			* This method has 3 parameters one is for to email address other one is for name final one is for Attachment(This name splits form the email id).
+			
+			* Email message and Email subject given inside this method. if your want to change the message or subject of the email
+			  simply replace the text what i given.
 
-QRcode Package is zxing
+How to Send Email?
+------------------
+	1) Create a hash map for each student and put them all needed information into this hash map along with below given key values.
 	
-	i)generateQR - Method
-	---------------------		
-		*You need to pass data string to this method it will generate QRcode and return the BufferedImage.
+	Note: Don't change the key value.(If you are change then you will get exception) 
+	
+	Key values
+	----------
+		name (Student name)
+		cls (Class)
+		roleNumber(Reg.Number)
+		email(Parents Email)
+		english (English mark)
+		tamil (Tamil Mark)
+		maths (Maths Mark)
+		social (Social Mark)
+		science (Science Mark)
 		
-Text:
------	
-This class have paragraph method to print the paragraph in your certificate.
-
-	i) Paragraph-Method:
-	--------------------
-		*You need to pass the paragraph string to this class long with margin and font size.
-		
-		*This class split the string for your margin size and store into a array list and return the array list
-
-Certificate:
-------------
-This class have getCertificate Method.
-
-	i)getCertificate - Method:
-	--------------------------
-		*This method generate the certificate.
-		
-		*This method has some parameters that name, description, qrData, signDate these are only dynamic data in this certificate.
-		
-		*All Static content are pre-designed and stored as a .jpg in the template dir. This method first get the template and place the dynamic content on it.
-
-How to get the certificate?
----------------------------
-1) Enter required Details in main function in certificate class. click the run button.
-
-2) Find your Certificate in the desktop.
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	2) Add the hash map object into the studentDetails Arrays list.
+	
+	3) Run the code
